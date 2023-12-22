@@ -26,19 +26,11 @@ const initialFishes = [
 export class ClassApp extends Component {
   state = {
     currentFishes: initialFishes,
-    guessInformation: { fishGuess: '' },
     correctCount: 0,
     incorrectCount: 0,
-    isGameOver: false,
   };
   render() {
-    const {
-      currentFishes,
-      guessInformation,
-      correctCount,
-      incorrectCount,
-      isGameOver,
-    } = this.state;
+    const { currentFishes, correctCount, incorrectCount } = this.state;
     const setCounts = (guessInformation) => {
       if (guessInformation.fishGuess === currentFishes[0].name) {
         this.setState({ correctCount: correctCount + 1 });
@@ -46,6 +38,7 @@ export class ClassApp extends Component {
         this.setState({ incorrectCount: incorrectCount + 1 });
       }
     };
+    const isGameOver = this.state.currentFishes.length === 0;
 
     if (!isGameOver) {
       return (
@@ -59,16 +52,10 @@ export class ClassApp extends Component {
             currentFishes={currentFishes}
             Images={Images}
             handleGuessInformation={(guessInformation) => {
-              this.setState({ guessInformation: guessInformation });
               setCounts(guessInformation);
             }}
             handleCurrentFishes={(currentFishes) => {
               this.setState({ currentFishes: currentFishes });
-            }}
-            gameOver={(currentFishes) => {
-              currentFishes.length === 1
-                ? this.setState({ isGameOver: !isGameOver })
-                : this.setState({ isGameOver: isGameOver });
             }}
           />
         </>

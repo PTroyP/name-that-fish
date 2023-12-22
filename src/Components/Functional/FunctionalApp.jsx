@@ -25,12 +25,14 @@ const initialFishes = [
 
 export function FunctionalApp() {
   const [currentFishes, setCurrentFishes] = useState(initialFishes);
-  const [guessInformation, setGuessInformation] = useState({
-    fishGuess: '',
-  });
+
+  // const fishIndex = correctCount + incorrectCount;
+
   const [correctCount, setCorrectCount] = useState(0);
   const [incorrectCount, setIncorrectCount] = useState(0);
-  const [isGameOver, setIsGameOver] = useState(false);
+
+  const isGameOver = currentFishes.length === 0;
+
   const setCounts = (guessInformation) => {
     if (guessInformation.fishGuess === currentFishes[0].name) {
       setCorrectCount(correctCount + 1);
@@ -51,16 +53,10 @@ export function FunctionalApp() {
           currentFishes={currentFishes}
           Images={Images}
           handleGuessInformation={(guessInformation) => {
-            setGuessInformation(guessInformation);
             setCounts(guessInformation);
           }}
           handleCurrentFishes={(currentFishes) => {
             setCurrentFishes(currentFishes);
-          }}
-          gameOver={(currentFishes) => {
-            currentFishes.length === 1
-              ? setIsGameOver(!isGameOver)
-              : setIsGameOver(isGameOver);
           }}
         />
       </>

@@ -5,7 +5,6 @@ export function FunctionalGameBoard({
   currentFishes,
   handleGuessInformation,
   handleCurrentFishes,
-  gameOver,
 }) {
   const nextFishToName = currentFishes[0];
   const [fishGuessInput, setFishGuessInput] = useState('');
@@ -25,7 +24,7 @@ export function FunctionalGameBoard({
           handleCurrentFishes(
             currentFishes.filter((el) => el !== currentFishes[0])
           );
-          gameOver(currentFishes);
+
           setFishGuessInput('');
         }}
       >

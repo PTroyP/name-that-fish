@@ -6,13 +6,8 @@ export class ClassGameBoard extends Component {
 
   render() {
     const { fishGuessInput } = this.state;
-    const {
-      currentFishes,
-      handleGuessInformation,
-      handleCurrentFishes,
-      gameOver,
-    } = this.props;
-
+    const { currentFishes, handleGuessInformation, handleCurrentFishes } =
+      this.props;
     const nextFishToName = currentFishes[0];
     return (
       <div id="game-board">
@@ -29,7 +24,6 @@ export class ClassGameBoard extends Component {
             handleCurrentFishes(
               currentFishes.filter((el) => el !== currentFishes[0])
             );
-            gameOver(currentFishes);
             this.setState({ fishGuessInput: '' });
           }}
         >
